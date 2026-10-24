@@ -1,0 +1,212 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080a08">
+  <meta name="description" content="RadiumOS — Linux-проект и radi.">
+  <title>RadiumOS — Linux без лишнего</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+  <script type="module" src="pocketbase-site.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="RadiumOS">
+      <img src="assets/logo.png" alt="RadiumOS" class="brand-logo">
+    </a>
+
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="#home" data-i18n="navHome">Главная</a>
+      <a href="#radi" data-i18n="navRadi">radi</a>
+      <a href="#news" data-i18n="navNews">Новости</a>
+      <a href="#issues" data-i18n="navIssues">Проблемы</a>
+    </nav>
+
+    <button id="language-toggle" class="language-toggle" type="button">EN</button>
+  </header>
+
+  <main>
+    <section id="home" class="hero section">
+      <div class="hero-content">
+        <p class="eyebrow" data-i18n="heroEyebrow">Linux project</p>
+        <h1>Radium<span>OS</span></h1>
+        <p class="hero-description" data-i18n="heroDescription">
+          Linux-система без лишнего. Только необходимое.
+        </p>
+        <div class="hero-actions">
+          <a href="#radi" class="button button-primary" data-i18n="heroButton">
+            Изучить radi
+          </a>
+          <a href="https://github.com/RadiumOS-linux"
+             class="button button-secondary"
+             target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+      </div>
+
+      <div class="hero-mark">
+        <img src="assets/logo.png" alt="" class="hero-logo">
+        <span class="hero-mark-line"></span>
+        <span class="hero-mark-caption">RADium / LINUX</span>
+      </div>
+    </section>
+
+    <section id="radi" class="section content-section">
+      <div class="section-heading">
+        <p class="eyebrow">01 / PACKAGE MANAGER</p>
+        <h2><span class="radi-word">radi</span></h2>
+        <p data-i18n="radiDescription">
+          Инструмент управления пакетами в экосистеме RadiumOS.
+        </p>
+      </div>
+
+      <div class="radi-layout">
+        <div class="radi-info">
+          <img src="assets/radi.png" alt="radi" class="radi-logo">
+          <h3 data-i18n="radiTitle">Просто. Быстро. Понятно.</h3>
+          <p data-i18n="radiText">
+            radi — концепция пакетного менеджера с лаконичным интерфейсом.
+          </p>
+
+          <div class="feature-list">
+            <div class="feature">
+              <span class="feature-index">01</span>
+              <div>
+                <h4 data-i18n="featureOneTitle">Простые команды</h4>
+                <p data-i18n="featureOneText">Понятный интерфейс командной строки.</p>
+              </div>
+            </div>
+            <div class="feature">
+              <span class="feature-index">02</span>
+              <div>
+                <h4 data-i18n="featureTwoTitle">Управление пакетами</h4>
+                <p data-i18n="featureTwoText">Поиск и управление пакетами в одном месте.</p>
+              </div>
+            </div>
+            <div class="feature">
+              <span class="feature-index">03</span>
+              <div>
+                <h4 data-i18n="featureThreeTitle">Часть RadiumOS</h4>
+                <p data-i18n="featureThreeText">Развивается вместе с системой.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="terminal">
+          <div class="console-header">
+            <div class="terminal-bar" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </div>
+            <span class="console-title">radi / preview</span>
+          </div>
+
+          <div id="console-output" class="console-output" role="status" aria-live="polite">
+            <p class="console-line console-muted" data-i18n="consoleWelcome">
+              Интерактивный обзор radi
+            </p>
+            <p class="console-line" data-i18n="consoleChoose">
+              Выбери действие ниже.
+            </p>
+          </div>
+
+          <div class="console-shortcuts">
+            <button type="button" class="console-example" data-command="help">help</button>
+            <button type="button" class="console-example" data-command="version">version</button>
+            <button type="button" class="console-example" data-command="list">list</button>
+            <button type="button" class="console-example" data-command="info">info</button>
+          </div>
+
+          <p class="console-disclaimer" data-i18n="consoleDisclaimer">
+            Демонстрация интерфейса. Реальная установка пакетов не выполняется.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="news" class="section content-section">
+      <div class="section-heading">
+        <p class="eyebrow">02 / UPDATES</p>
+        <h2 data-i18n="newsTitle">Новости</h2>
+        <p data-i18n="newsDescription">Обновления и заметки о развитии проекта.</p>
+      </div>
+
+      <!-- Исправлено: добавлен ID, который использует JavaScript -->
+      <div id="news-grid" class="news-grid">
+        <p class="empty-state" data-i18n="newsLoading">Загрузка новостей...</p>
+      </div>
+    </section>
+
+    <section id="issues" class="section content-section">
+      <div class="section-heading">
+        <p class="eyebrow">03 / FEEDBACK</p>
+        <h2 data-i18n="issuesTitle">Проблемы и предложения</h2>
+        <p data-i18n="issuesDescription">
+          Отправь описание ошибки, вопрос или идею.
+        </p>
+      </div>
+
+      <div class="issues-layout">
+        <form id="issue-form" class="issue-form">
+          <label for="issue-title" data-i18n="issueTitleLabel">Заголовок</label>
+          <input
+            id="issue-title"
+            name="title"
+            maxlength="120"
+            required
+            data-i18n-placeholder="issueTitlePlaceholder"
+            placeholder="Краткое описание"
+          >
+
+          <label for="issue-type" data-i18n="issueTypeLabel">Тип</label>
+          <select id="issue-type" name="type">
+            <option value="bug" data-i18n="issueTypeBug">Ошибка</option>
+            <option value="idea" data-i18n="issueTypeIdea">Идея</option>
+            <option value="question" data-i18n="issueTypeQuestion">Вопрос</option>
+          </select>
+
+          <label for="issue-description" data-i18n="issueDescriptionLabel">Описание</label>
+          <textarea
+            id="issue-description"
+            name="description"
+            rows="5"
+            maxlength="4000"
+            required
+            data-i18n-placeholder="issueDescriptionPlaceholder"
+            placeholder="Опиши проблему подробнее"
+          ></textarea>
+
+          <button type="submit" class="button button-primary" data-i18n="issueSubmit">
+            Отправить
+          </button>
+          <p id="issue-message" class="form-note" role="status"></p>
+        </form>
+
+        <div class="issues-panel">
+          <div class="issues-panel-heading">
+            <h3 data-i18n="issueListTitle">Список обращений</h3>
+            <span id="issue-count" class="issue-count">0</span>
+          </div>
+          <div id="issues-list" class="issues-list">
+            <p class="empty-state" data-i18n="issuesLoading">Загрузка обращений...</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a href="#home" class="footer-brand">RadiumOS</a>
+    <div class="footer-links">
+      <a href="mailto:radium.linux@gmail.com">radium.linux@gmail.com</a>
+      <a href="https://github.com/RadiumOS-linux"
+         target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+    <p class="footer-credit">
+      <span data-i18n="madeBy">Создано командой RadiumOS</span>
+      · © <span id="year"></span> RadiumOS
+    </p>
+  </footer>
+</body>
+</html>
