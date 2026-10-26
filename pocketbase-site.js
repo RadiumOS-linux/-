@@ -107,7 +107,7 @@ async function loadNews() {
     console.error("Ошибка загрузки новостей:", error);
     showMessage(
       newsGrid,
-      "Не удалось загрузить новости. Проверь подключение и правила PocketBase.",
+      "Не удалось загрузить новости.",
       "news-state"
     );
   }
@@ -214,7 +214,7 @@ if (issueForm) {
 
       if (issueMessage) {
         issueMessage.textContent =
-          "Не удалось отправить обращение. Проверь настройки PocketBase.";
+          "Не удалось отправить обращение.";
       }
     }
   });
