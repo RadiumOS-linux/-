@@ -141,46 +141,89 @@ document.querySelector("#language-toggle")?.addEventListener("click", () => {
   translatePage();
 });
 
-document.querySelectorAll(".console-example").forEach((button) => {
-  button.addEventListener("click", () => {
-    const command = button.dataset.command;
-    const output = document.querySelector("#console-output");
-    const result = translations[language].radiResults[command];
+/* ---------- Консоль radi ---------- */
 
-    if (!output || !result) return;
+const consoleOutput = document.querySelector("#console-output");
+const consoleButtons = document.querySelectorAll(".console-example");
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    output.replaceChildren();
+let activeCommand = null;
+let consoleTimer = null;
 
-    const line = document.createElement("p");
-    line.className = "console-line console-muted";
-    line.textContent = `radi / ${command}`;
+function appendConsoleLine(className, text) {
+  const line = document.createElement("p");
+  line.className = className;
+  line.textContent = text;
+  consoleOutput.appendChild(line);
+}
 
-    const response = document.createElement("p");
-    response.className = "console-line";
-    response.textContent = result;
+function runCommand(command, animate = true) {
+  const result = translations[language].radiResults[command];
+  if (!consoleOutput || !result) return;
 
-    output.append(line, response);
+  clearTimeout(consoleTimer);
+  activeCommand = command;
+
+  consoleButtons.forEach((button) => {
+    const isActive = button.dataset.command === command;
+    button.classList.toggle("is-active", isActive);
+    button.setAttribute("aria-pressed", String(isActive));
   });
+
+  consoleOutput.replaceChildren();
+  appendConsoleLine("console-line console-cmd", `radi ${command}`);
+
+  const showResult = () => appendConsoleLine("console-line console-result", result);
+
+  if (animate && !reduceMotion) {
+    consoleTimer = setTimeout(showResult, 220);
+  } else {
+    showResult();
+  }
+}
+
+consoleButtons.forEach((button) => {
+  button.addEventListener("click", () => runCommand(button.dataset.command));
 });
+
+// при смене языка перерисовываем уже выполненную команду
+document.addEventListener("languageChanged", () => {
+  if (activeCommand) runCommand(activeCommand, false);
+});
+
+/* ---------- Навигация и шапка ---------- */
 
 const sections = document.querySelectorAll("main section[id]");
 const navLinks = document.querySelectorAll(".main-nav a");
+const header = document.querySelector(".site-header");
+
+function setActiveLink(id) {
+  navLinks.forEach((link) => {
+    link.classList.toggle("active", link.getAttribute("href") === `#${id}`);
+  });
+}
 
 if ("IntersectionObserver" in window) {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      navLinks.forEach((link) => {
-        link.classList.toggle(
-          "active",
-          link.getAttribute("href") === `#${entry.target.id}`
-        );
-      });
+      if (entry.isIntersecting) setActiveLink(entry.target.id);
     });
   }, { rootMargin: "-30% 0px -60% 0px" });
 
   sections.forEach((section) => observer.observe(section));
 }
+
+function onScroll() {
+  if (header) header.classList.toggle("is-scrolled", window.scrollY > 8);
+
+  // в самом низу страницы подсвечиваем последний раздел
+  const atBottom =
+    window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+  if (atBottom && sections.length) setActiveLink(sections[sections.length - 1].id);
+}
+
+window.addEventListener("scroll", onScroll, { passive: true });
+onScroll();
 
 const year = document.querySelector("#year");
 if (year) year.textContent = new Date().getFullYear();

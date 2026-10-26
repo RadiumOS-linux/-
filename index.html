@@ -1,12 +1,16 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#080a08">
+  <meta name="theme-color" content="#050806">
   <meta name="description" content="RadiumOS — Linux-проект и radi.">
   <title>RadiumOS — Linux distribution</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Onest:wght@400;500;600;700&family=Unbounded:wght@500;600;700&display=swap&subset=cyrillic" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
   <script type="module" src="pocketbase-site.js"></script>
@@ -14,7 +18,8 @@
 <body>
   <header class="site-header">
     <a class="brand" href="#home" aria-label="RadiumOS">
-      <img src="assets/logo.png" alt="RadiumOS" class="brand-logo">
+      <img src="assets/logo.png" alt="" class="brand-logo">
+      <span class="brand-name">Radium<span>OS</span></span>
     </a>
 
     <nav class="main-nav" aria-label="Main navigation">
@@ -30,7 +35,6 @@
   <main>
     <section id="home" class="hero section">
       <div class="hero-content">
-        <p class="eyebrow" data-i18n="heroEyebrow">Linux project</p>
         <h1>Radium<span>OS</span></h1>
         <p class="hero-description" data-i18n="heroDescription">
           Linux-система без лишнего. Только необходимое.
@@ -45,53 +49,61 @@
         </div>
       </div>
 
-      <div class="hero-mark">
+      <div class="hero-mark" aria-hidden="true">
+        <span class="orbit orbit-a"><i></i></span>
+        <span class="orbit orbit-b"><i></i></span>
+        <span class="orbit orbit-c"><i></i></span>
         <img src="assets/logo.png" alt="" class="hero-logo">
-        <span class="hero-mark-line"></span>
-        <span class="hero-mark-caption">RADium / LINUX</span>
       </div>
     </section>
 
     <section id="radi" class="section content-section">
-      <div class="section-heading">
-        <p class="eyebrow">01 / PACKAGE MANAGER</p>
-        <h2><span class="radi-word">radi</span></h2>
-        <p data-i18n="radiDescription">
-          Инструмент управления пакетами в экосистеме RadiumOS.
-        </p>
+      <div class="section-heading section-heading-radi">
+        <img src="assets/radi.png" alt="" class="radi-logo">
+        <div>
+          <h2><span class="radi-word">radi</span></h2>
+          <p data-i18n="radiDescription">
+            Инструмент управления пакетами в экосистеме RadiumOS.
+          </p>
+        </div>
       </div>
 
       <div class="radi-layout">
         <div class="radi-info">
-          <img src="assets/radi.png" alt="radi" class="radi-logo">
           <h3 data-i18n="radiTitle">Просто. Быстро. Понятно.</h3>
           <p data-i18n="radiText">
             radi — концепция пакетного менеджера с лаконичным интерфейсом.
           </p>
 
-          <div class="feature-list">
-            <div class="feature">
-              <span class="feature-index">01</span>
+          <ul class="feature-list">
+            <li class="feature">
+              <span class="feature-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m5 8 5 4-5 4"/><path d="M13 17h6"/></svg>
+              </span>
               <div>
                 <h4 data-i18n="featureOneTitle">Простые команды</h4>
                 <p data-i18n="featureOneText">Понятный интерфейс командной строки.</p>
               </div>
-            </div>
-            <div class="feature">
-              <span class="feature-index">02</span>
+            </li>
+            <li class="feature">
+              <span class="feature-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 7.5v9L12 21l8-4.5v-9L12 3Z"/><path d="m4 7.5 8 4.5 8-4.5"/><path d="M12 12v9"/></svg>
+              </span>
               <div>
                 <h4 data-i18n="featureTwoTitle">Управление пакетами</h4>
                 <p data-i18n="featureTwoText">Поиск и управление пакетами в одном месте.</p>
               </div>
-            </div>
-            <div class="feature">
-              <span class="feature-index">03</span>
+            </li>
+            <li class="feature">
+              <span class="feature-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1.6"/><ellipse cx="12" cy="12" rx="9" ry="3.8"/><ellipse cx="12" cy="12" rx="9" ry="3.8" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9" ry="3.8" transform="rotate(120 12 12)"/></svg>
+              </span>
               <div>
                 <h4 data-i18n="featureThreeTitle">Часть RadiumOS</h4>
                 <p data-i18n="featureThreeText">Развивается вместе с системой.</p>
               </div>
-            </div>
-          </div>
+            </li>
+          </ul>
         </div>
 
         <div class="terminal">
@@ -112,27 +124,25 @@
           </div>
 
           <div class="console-shortcuts">
-            <button type="button" class="console-example" data-command="help">help</button>
-            <button type="button" class="console-example" data-command="version">version</button>
-            <button type="button" class="console-example" data-command="list">list</button>
-            <button type="button" class="console-example" data-command="info">info</button>
+            <button type="button" class="console-example" data-command="help" aria-pressed="false">help</button>
+            <button type="button" class="console-example" data-command="version" aria-pressed="false">version</button>
+            <button type="button" class="console-example" data-command="list" aria-pressed="false">list</button>
+            <button type="button" class="console-example" data-command="info" aria-pressed="false">info</button>
           </div>
 
           <p class="console-disclaimer" data-i18n="consoleDisclaimer">
-            Демонстрация интерфейса. 
+            Демонстрация интерфейса.
           </p>
         </div>
       </div>
     </section>
 
-    <section id="news" class="section content-section">
+    <section id="news" class="section content-section section-split">
       <div class="section-heading">
-        <p class="eyebrow">02 / UPDATES</p>
         <h2 data-i18n="newsTitle">Новости</h2>
         <p data-i18n="newsDescription">Обновления и заметки о развитии проекта.</p>
       </div>
 
-      <!-- Исправлено: добавлен ID, который использует JavaScript -->
       <div id="news-grid" class="news-grid">
         <p class="empty-state" data-i18n="newsLoading">Загрузка новостей...</p>
       </div>
@@ -140,7 +150,6 @@
 
     <section id="issues" class="section content-section">
       <div class="section-heading">
-        <p class="eyebrow">03 / FEEDBACK</p>
         <h2 data-i18n="issuesTitle">Проблемы и предложения</h2>
         <p data-i18n="issuesDescription">
           Отправь описание ошибки, вопрос или идею.
@@ -155,6 +164,7 @@
             name="title"
             maxlength="120"
             required
+            autocomplete="off"
             data-i18n-placeholder="issueTitlePlaceholder"
             placeholder="Краткое описание"
           >
@@ -197,15 +207,20 @@
   </main>
 
   <footer class="site-footer">
-    <a href="#home" class="footer-brand">RadiumOS</a>
-    <div class="footer-links">
-      <a href="mailto:radium.linux@gmail.com">radium.linux@gmail.com</a>
-      <a href="https://github.com/RadiumOS-linux"
-         target="_blank" rel="noopener noreferrer">GitHub</a>
+    <div class="footer-top">
+      <a href="#home" class="footer-brand">
+        <img src="assets/logo.png" alt="" class="footer-mark">
+        <span>Radium<span>OS</span></span>
+      </a>
+      <div class="footer-links">
+        <a href="mailto:radium.linux@gmail.com">radium.linux@gmail.com</a>
+        <a href="https://github.com/RadiumOS-linux"
+           target="_blank" rel="noopener noreferrer">GitHub</a>
+      </div>
     </div>
     <p class="footer-credit">
-      <span data-i18n="madeBy">Создано RadiationGroup</span>
-      · © <span id="year"></span> RadiumOS
+      <span data-i18n="madeBy">Создано командой RadiumOS</span>
+      <span>© <span id="year"></span> RadiumOS</span>
     </p>
   </footer>
 </body>
